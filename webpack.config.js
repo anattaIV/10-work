@@ -10,47 +10,47 @@ module.exports = {
     filename: 'bundle.js', //output.filename: имя итогового JS-файла.
     assetModuleFilename: 'assets/[hash][ext][query]'
   },
-  // Понадобится для автоматической пересборки проекта
+  // Понадобится для автоматической пересборки проекта !УДАЛИТЬ
   devServer: {
     static: path.resolve(__dirname, 'dist'),
     port: 3000,
     open: true,
-    hot: true, // Включает Hot Module Replacement (Автоматически обновляет страницу в браузере при изменениях в коде без полной перезагрузки страницы.)
+    hot: true, // Включает Hot Module Replacement (Автоматически обновляет страницу в браузере при изменениях в коде без полной перезагрузки страницы.)!УДАЛИТЬ
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.m?js$/,//обработка через babel
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader' //обработка через babel
+          loader: 'babel-loader'
         }
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        type: 'asset/resource' // добавит файлы в dist и вернёт URL
+        test: /\.(png|jpe?g|gif|svg)$/i, //обработка картинок шрифтов и т.д
+        type: 'asset/resource' // добавит файлы в dist и вернёт URL !УДАЛИТЬ
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/i,
         type: 'assetcd "10 work"/resource'
       },
       {
-        test: /\.css$/i,//показывает как обрабатывать css файлы
+        test: /\.css$/i,//подключение PostCSS
         use: [
           'style-loader',
           {
             loader: 'css-loader',
             options: { importLoaders: 1 }
           },
-          'postcss-loader' //Пропускает CSS-код через PostCSS(cssnano autoprefix)
+          'postcss-loader'
         ]
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html', // исходный HTML-шаблон
-      filename: 'index.html'        // имя выходного HTML-файла
+      template: './src/index.html', // исходный HTML-шаблон !УДАЛИТЬ
+      filename: 'index.html'        // имя выходного HTML-файла !УДАЛИТЬ
     })
   ],
 };
